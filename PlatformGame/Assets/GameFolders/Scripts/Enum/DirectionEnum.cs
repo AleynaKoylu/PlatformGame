@@ -8,6 +8,7 @@ namespace PlatformGame.Scripts.Enum
         Wait,
         Left,
         Right,
+        Down,
         Up
     }
 }

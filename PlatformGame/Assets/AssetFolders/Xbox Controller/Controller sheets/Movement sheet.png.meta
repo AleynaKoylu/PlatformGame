@@ -261,10 +261,10 @@ TextureImporter:
       name: Thumbstick Bottom part
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 128
-        height: 128
+        x: 58
+        y: 98
+        width: 12
+        height: 11
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -323,7 +323,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f5fbb4f0deffd85429f903f298677f58
     internalID: 0
     vertices: []
     indices: 

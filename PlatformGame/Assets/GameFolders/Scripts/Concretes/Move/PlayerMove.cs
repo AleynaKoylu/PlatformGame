@@ -10,29 +10,43 @@ namespace PlatformGame.Scripts.Concretes.Move
 {
     public class PlayerMove : MonoBehaviour
     {
-        [SerializeField] float speed;
+        public int IsRight { get { return _isRight; } }
+        public int IsJump { get { return _isJump; } }
+        int _isRight;
+        int _isJump;
         [SerializeField] MoveControl moveControl;
-        
-
-      
         void Update()
         {
-            if (moveControl._directionEnum == DirectionEnum.Right)
+            switch (moveControl._directionEnum)
             {
-                transform.position += Vector3.right * Time.deltaTime * speed;
-                
+                case DirectionEnum.Right:
+                    Control(_isRight, 1);
+                    break;
+                case DirectionEnum.Left:
+                    Control(_isRight,-1);
+                    break;
+                case DirectionEnum.Up:
+                    Control(_isJump, 1);
+                    break;
+                case DirectionEnum.Down:
+                    Control(_isJump,-1);
+                    break;
+                case DirectionEnum.Wait:
+                    Control(_isJump,0);
+                    Control(_isRight, 0);
+                    break;
             }
-                
-            else if (moveControl._directionEnum == DirectionEnum.Left)
-            {
-                transform.position += Vector3.left * Time.deltaTime * speed;
-            }
-                
-            else if (Input.GetKey(KeyCode.W))
-                transform.position += Vector3.up * Time.deltaTime * speed;
+
+
+            
+           
         }
-       
-       
+
+        void Control(int key, int value)
+        {
+            key = value;
+        }
+
     }
 }
 

@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 namespace PlatformGame.Scripts.Abstarct
 {
-    public abstract class ButtonSpriteChange : MonoBehaviour
+    public class ButtonSpriteChange : MonoBehaviour
     {
-        [SerializeField] List <Sprite> sprites = new List<Sprite>();
-        [SerializeField] Image image;
-        public void SpriteChangee(int index)
+        [SerializeField] List< Image> image;
+
+        public void SpriteChangee(int imageIndex)
         {
-            image.sprite = sprites[index];
+           
+            image[imageIndex].gameObject.SetActive(true);
         }
     }
 
