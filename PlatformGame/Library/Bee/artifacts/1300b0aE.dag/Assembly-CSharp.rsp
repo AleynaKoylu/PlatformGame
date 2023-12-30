@@ -368,7 +368,9 @@
 -r:"Library/Bee/artifacts/1300b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/GameFolders/Scripts/Abstracts/ButtonSpriteChange.cs"
 "Assets/GameFolders/Scripts/Concretes/Controller/PlayerController.cs"
+"Assets/GameFolders/Scripts/Concretes/Move/PlayerJump.cs"
 "Assets/GameFolders/Scripts/Concretes/Move/PlayerMove.cs"
+"Assets/GameFolders/Scripts/Concretes/Move/PlayerScale.cs"
 "Assets/GameFolders/Scripts/Enum/DirectionEnum.cs"
 "Assets/GameFolders/Scripts/UI/MoveControl.cs"
 -langversion:9.0

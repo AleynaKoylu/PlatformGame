@@ -1,5 +1,4 @@
 using PlatformGame.Scripts.Concretes.Move;
-using PlatformGame.Scripts.Enum;
 using PlatformGame.Scripts.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,93 +9,74 @@ namespace PlatformGame.Scripts.Concretes.Controller
 {
     public class PlayerController : MonoBehaviour
     {
-        PlayerMove _playerMove;
         [SerializeField] float speed;
-        SpriteRenderer _spriteRenderer;
-        Animator animator;
+        
+        [SerializeField] MoveControl moveControl;
+
+        float _direction;
+        bool _isJump;
+        Animator _animator;
+        PlayerMove _playerMove;
+        Rigidbody2D _rigidbody2D;
+        PlayerJump _playerJump;
+        PlayerScale _playerScale;
+       
         private void Awake()
         {
+            _animator = GetComponent<Animator>();
             _playerMove = GetComponent<PlayerMove>();
-            _spriteRenderer = transform.GetComponentInChildren<SpriteRenderer>();
-            animator = GetComponent<Animator>();
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+            _playerJump = GetComponent<PlayerJump>();
+            _playerScale = GetComponent<PlayerScale>();
+        }
+
+        private void Update()
+        {
+            _direction = moveControl.Direction;
+            _isJump = moveControl.Jump;
+
+            #region Silinecek
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.position += Vector3.right* speed * Time.deltaTime;
+                _animator.SetFloat("Runtried", 1);
+
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.position += Vector3.left * speed * Time.deltaTime;
+                _animator.SetFloat("Runtried", 1);
+
+            }
+            if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+            {
+                _animator.SetFloat("Runtried", 0);
+
+            }
+            print(_rigidbody2D.velocity);
+            #endregion
         }
         private void FixedUpdate()
         {
-            if (_playerMove.IsRight == 1)
-            {
-                Move(Vector3.right, false, true);
-            }
-            else if (_playerMove.IsRight == -1)
-            {
-                Move(Vector3.left, true, true);
-            }
-            else if (_playerMove.IsRight == 0)
-            {
-                Move(Vector3.left, true, true);
-            }
-            else if (_playerMove.IsJump == 1)
-            {
-                Jump(Vector3.up, true, "Jump");
-            }
-            else if (_playerMove.IsJump == -1)
-            {
-                JumpAnimControl(true,"Down");
-            }
-            else
-            {
-                AnimControl(false);
-                JumpAnimControl(false, "Jump");
-                JumpAnimControl(false, "Down");
-            }
-                
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                Jump(Vector3.up, true, "Jump");
-            }
-            else if (Input.GetKeyDown(KeyCode.S))
-            {
-                JumpAnimControl(true, "Down");
-            }
-            else if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.W))
-            {
-                JumpAnimControl(false, "Jump");
-                JumpAnimControl(false, "Down");
-            }
-        }
-        void Move(Vector3 direction,bool directionFlip,bool runAnim)
-        {
-            transform.position += direction * Time.deltaTime * speed;
-            _spriteRenderer.flipX = directionFlip;
-            AnimControl(runAnim);
-        }
-        void AnimControl(bool runAnim)
-        {
-            if (runAnim)
-            {
-                animator.SetBool("Run", true);
-            }
-            else
-            {
-                animator.SetBool("Run", false);
-            }
-        }
-        void Jump(Vector3 direction, bool runAnim,string animName)
-        {
-            transform.position += direction * Time.deltaTime * speed;
-           JumpAnimControl(runAnim,animName);
-        }
-        void JumpAnimControl(bool jumpAnim,string animName)
-        {
+            _animator.SetFloat("Runtried", Mathf.Abs(_direction));
 
-            if (jumpAnim)
+            _playerMove.MovePlayer(_direction);
+            if (_direction != 0)
             {
-                animator.SetBool(animName, true);
+               _playerScale.ScalePlayer(_direction);
             }
-            else
+            if (_isJump)
             {
-                animator.SetBool(animName, false);
+                _playerJump.JumpPlayer();
+                
+                _isJump = false;
+                
             }
+            _animator.SetBool("Jump", _playerJump.IsJumpAction);
         }
+        
+      
+
     }
 }
 

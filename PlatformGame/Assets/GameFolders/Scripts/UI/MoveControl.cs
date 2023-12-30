@@ -10,8 +10,14 @@ namespace PlatformGame.Scripts.UI
 {
     public class MoveControl : MonoBehaviour
     {
-        public DirectionEnum _directionEnum { get { return _direction; } set { _direction = value; } }
-        [SerializeField] DirectionEnum _direction;
+
+        public int Direction => _direction;
+        public bool Jump => _jump;
+
+        int _direction;
+        bool _jump;
+
+
         ButtonSpriteChange _buttonSpriteChange;
         private void Awake()
         {
@@ -19,47 +25,45 @@ namespace PlatformGame.Scripts.UI
         }
         public void LeftClick()
         {
-          
-            ButtonClick(DirectionEnum.Left,1);
+
+            ButtonClick( 2, false);
+            DirectionValue(-1);
         }
         public void RightClick()
         {
-            
-            ButtonClick(DirectionEnum.Right,2);
+
+            ButtonClick( 1, false);
+            DirectionValue(1);
         }
         public void UpClick()
         {
-            
-            ButtonClick(DirectionEnum.Wait,0);
 
-            ButtonClick(DirectionEnum.Wait, 3);
+            ButtonClick( 0, false);
+            DirectionValue(0);
         }
         public void JumpClick()
         {
-            ButtonClick(DirectionEnum.Up, 4);
-        }
-        public void DownClick()
-        {
-            ButtonClick(DirectionEnum.Up, 5);
-        }
-        private void Update()
-        {
-            if (Input.GetKey(KeyCode.S))
-            {
-                DownClick();
-            }
-            if (Input.GetKeyUp(KeyCode.S))
-            {
-                UpClick();
-            }
-        }
-        void ButtonClick(DirectionEnum directionEnum,int index)
-        {
-           
-          _buttonSpriteChange.SpriteChangee(index);
-           _direction = directionEnum;
-        }
+            _jump = true;
+            print("sl");
 
+        }
+       public void JumpUp()
+        {
+            _jump = false;
+        }
+        void ButtonClick( int index, bool jumpOrDirection)
+        {
+            if (jumpOrDirection)
+                _buttonSpriteChange.SpriteChangeJump(index);
+            else
+                _buttonSpriteChange.SpriteChangeDirection(index);
+            
+        }
+        void DirectionValue(int value)
+        {
+            _direction= value;
+        }
+      
     }
 }
 

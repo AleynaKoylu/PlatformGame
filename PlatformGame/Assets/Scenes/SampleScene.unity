@@ -242,10 +242,12 @@ GameObject:
   m_Component:
   - component: {fileID: 106875770}
   - component: {fileID: 106875771}
-  - component: {fileID: 106875772}
+  - component: {fileID: 106875773}
   - component: {fileID: 106875774}
+  - component: {fileID: 106875772}
   - component: {fileID: 106875775}
   - component: {fileID: 106875776}
+  - component: {fileID: 106875777}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -261,7 +263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106875769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.13, y: -0.197, z: 0}
+  m_LocalPosition: {x: -6.885, y: -0.197, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -302,8 +304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afecf3f6d25b1d949894b39994301bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
---- !u!61 &106875774
+  speed: 5
+  moveControl: {fileID: 799451423}
+--- !u!61 &106875773
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -316,33 +319,20 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.16169447}
+  m_Offset: {x: -0.07593989, y: -0.2530573}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.65, y: 1.6}
-    newSize: {x: 1.65, y: 1.6}
-    adaptiveTilingThreshold: 0.5
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.3233885}
+  m_Size: {x: 0.904634, y: 1.103458}
   m_EdgeRadius: 0
---- !u!114 &106875775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 106875769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 433fdbdeb6973ca458c09bdc84138bd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveControl: {fileID: 799451423}
---- !u!50 &106875776
+--- !u!50 &106875774
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -363,6 +353,44 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &106875775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106875769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433fdbdeb6973ca458c09bdc84138bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+--- !u!114 &106875776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106875769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bffd74ed5fa8fa4090190134e09b561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 350
+--- !u!114 &106875777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106875769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a140eb6ad24114b91846098c6a5517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &109042861
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +607,7 @@ GameObject:
   - component: {fileID: 209322641}
   m_Layer: 0
   m_Name: Foreground
-  m_TagString: Untagged
+  m_TagString: ForeGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1249,6 +1277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 317736265}
   - component: {fileID: 317736266}
+  - component: {fileID: 317736267}
   m_Layer: 0
   m_Name: Player_Png
   m_TagString: Untagged
@@ -1323,6 +1352,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &317736267
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317736264}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.074431896, y: -0.3394068}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.65, y: 1.6}
+    newSize: {x: 2.0625, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.9965383, y: 0.9245511}
+  m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,7 +1482,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &576637978
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1480,19 +1535,7 @@ MonoBehaviour:
   - eventID: 3
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 799451423}
-          m_TargetAssemblyTypeName: MoveControl, Assembly-CSharp
-          m_MethodName: UpClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!114 &576637980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1806,7 +1849,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34ce7c0836f28340b72d770db1e7ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _direction: 0
 --- !u!114 &799451424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1819,10 +1861,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50d9835a40cd0ee4fbe5a2178e4e4a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image:
+  imageDirection:
   - {fileID: 1923215823}
-  - {fileID: 923009425}
   - {fileID: 1587821921}
+  - {fileID: 923009425}
+  imageJump:
   - {fileID: 1934449788}
   - {fileID: 147649158}
   - {fileID: 1814577503}
@@ -2532,8 +2575,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 799451423}
-          m_TargetAssemblyTypeName: MoveControl, Assembly-CSharp
-          m_MethodName: UpClick
+          m_TargetAssemblyTypeName: PlatformGame.Scripts.UI.MoveControl, Assembly-CSharp
+          m_MethodName: JumpUp
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

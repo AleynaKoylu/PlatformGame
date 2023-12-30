@@ -5,10 +5,9 @@ namespace PlatformGame.Scripts.Enum
 {
     public enum DirectionEnum
     {
-        Wait,
-        Left,
-        Right,
-        Down,
-        Up
+        Wait=0,
+        Left=-1,
+        Right=1,
+        Up=2
     }
 }
