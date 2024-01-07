@@ -8,7 +8,13 @@ namespace PlatformGame.Scripts.Concretes.Move
     {
         public void ScalePlayer(float direction)
         {
-            transform.localScale = new Vector3(Mathf.Sign(direction), 1, 1);
+            if (direction != 0)
+            {
+                float mathfValue = Mathf.Sin(direction);
+                if (transform.localScale.x == mathfValue) return;
+                transform.localScale = new Vector3(mathfValue, 1, 1);
+            }
+            
         }
         
     }

@@ -15,10 +15,15 @@ namespace PlatformGame.Scripts.Concretes.Move
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
-        public void JumpPlayer()
+        public void JumpPlayer(bool jump)
         {
-            _rigidbody2D.velocity = Vector2.zero;
-            _rigidbody2D.AddForce(Vector2.up * jumpForce);
+            if (jump==true)
+            {
+                _rigidbody2D.velocity = Vector2.zero;
+                _rigidbody2D.AddForce(Vector2.up * jumpForce);
+                jump = false;
+            }
+          
         }
     }
 }

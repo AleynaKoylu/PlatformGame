@@ -1,3 +1,4 @@
+using PlatformGame.Scripts.Animations;
 using PlatformGame.Scripts.Concretes.Move;
 using PlatformGame.Scripts.UI;
 using System.Collections;
@@ -12,67 +13,64 @@ namespace PlatformGame.Scripts.Concretes.Controller
         [SerializeField] float speed;
         
         [SerializeField] MoveControl moveControl;
+       
 
         float _direction;
         bool _isJump;
-        Animator _animator;
+       
         PlayerMove _playerMove;
-        Rigidbody2D _rigidbody2D;
         PlayerJump _playerJump;
         PlayerScale _playerScale;
-       
+        PlayerAnimations _playerAnimations;
+        OnGround _onGround;
+
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
+           
             _playerMove = GetComponent<PlayerMove>();
-            _rigidbody2D = GetComponent<Rigidbody2D>();
             _playerJump = GetComponent<PlayerJump>();
             _playerScale = GetComponent<PlayerScale>();
+            _playerAnimations= GetComponent<PlayerAnimations>();
+            _onGround = GetComponent<OnGround>();
         }
 
         private void Update()
         {
             _direction = moveControl.Direction;
-            _isJump = moveControl.Jump;
+            if (moveControl.Jump == true && _onGround.IsOnGround == true)
+                _isJump = true;
+            else
+                _isJump = false;
+            
 
             #region Silinecek
             if (Input.GetKey(KeyCode.D))
             {
                 transform.position += Vector3.right* speed * Time.deltaTime;
-                _animator.SetFloat("Runtried", 1);
+                _playerAnimations.RunAnimation(1);
 
             }
             if (Input.GetKey(KeyCode.A))
             {
                 transform.position += Vector3.left * speed * Time.deltaTime;
-                _animator.SetFloat("Runtried", 1);
+                _playerAnimations.RunAnimation(1);
 
             }
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
             {
-                _animator.SetFloat("Runtried", 0);
+                _playerAnimations.RunAnimation(0);
 
             }
-            print(_rigidbody2D.velocity);
+           
             #endregion
         }
         private void FixedUpdate()
         {
-            _animator.SetFloat("Runtried", Mathf.Abs(_direction));
-
+            _playerAnimations.RunAnimation(_direction);
             _playerMove.MovePlayer(_direction);
-            if (_direction != 0)
-            {
-               _playerScale.ScalePlayer(_direction);
-            }
-            if (_isJump)
-            {
-                _playerJump.JumpPlayer();
-                
-                _isJump = false;
-                
-            }
-            _animator.SetBool("Jump", _playerJump.IsJumpAction);
+            _playerScale.ScalePlayer(_direction);
+            _playerJump.JumpPlayer(_isJump);
+            _playerAnimations.JumpAnimation(_playerJump.IsJumpAction);
         }
         
       
