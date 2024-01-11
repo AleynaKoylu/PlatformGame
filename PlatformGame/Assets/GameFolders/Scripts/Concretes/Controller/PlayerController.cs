@@ -23,6 +23,7 @@ namespace PlatformGame.Scripts.Concretes.Controller
         PlayerScale _playerScale;
         PlayerAnimations _playerAnimations;
         OnGround _onGround;
+        PlayerClimbed _playerClimbed;
 
         private void Awake()
         {
@@ -32,6 +33,7 @@ namespace PlatformGame.Scripts.Concretes.Controller
             _playerScale = GetComponent<PlayerScale>();
             _playerAnimations= GetComponent<PlayerAnimations>();
             _onGround = GetComponent<OnGround>();
+            _playerClimbed = GetComponent<PlayerClimbed>();
         }
 
         private void Update()
